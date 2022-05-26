@@ -5,7 +5,7 @@ COPY package.json package-lock.json tailwind.config.js ./
 RUN npm ci
 COPY static ./static
 COPY templates ./templates
-RUN npx tailwind -i ./static/input.css -o ./static/output.css
+RUN npx tailwind -i ./static/input.css -o ./static/output.css --minify
 
 FROM golang:1.18.2-alpine AS backend
 
