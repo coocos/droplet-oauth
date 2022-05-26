@@ -1,0 +1,24 @@
+{{define "title"}}Your droplets{{end}}
+
+{{define "body"}}
+<div class="mx-auto md:w-1/2 w-11/12">
+    <ul>
+        {{range .Droplets}}
+        <li class="my-8 w-full rounded-xl shadow-lg bg-white">
+            <div class="flex justify-center items-center bg-cyan-400 rounded-t-lg p-8">
+                <img src="/static/server.svg" class="h-8 w-8" alt="Server icon">
+                <h2 class="text-2xl flex-1 text-center text-gray-100">{{.Name}}</h2>
+            </div>
+            <dl class="p-8 text-lg">
+                <dt class="text-cyan-600 font-semibold">Specs</dt>
+                <dd class="mb-6">{{.Vcpus}} CPU / {{.Memory}} MB memory / {{.Disk}} GB disk</dd>
+                <dt class="text-cyan-600 font-semibold">Region</dt>
+                <dd class="mb-6">{{.Region.Name}}</dd>
+                <dt class="text-cyan-600 font-semibold">IP</dt>
+                <dd>{{(index .Networks.V4 0).IPAddress}}</dd>
+            </dl>
+        </li>
+        {{end}}
+    </ul>
+</div>
+{{end}}

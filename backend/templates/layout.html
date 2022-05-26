@@ -1,0 +1,21 @@
+{{define "layout"}}
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/static/output.css" rel="stylesheet">
+	<title>{{template "title"}}</title>
+</head>
+
+<body class="bg-gray-100">
+	<header>
+		<h1 class="p-8 text-3xl text-center bg-cyan-500 text-gray-100">Droplets</h1>
+		<img src="/static/wave.svg" class="absolute -z-10">
+	</header>
+	{{template "body" .}}
+</body>
+
+</html>
+{{end}}
