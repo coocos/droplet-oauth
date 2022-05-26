@@ -26,8 +26,9 @@ func readPort() int {
 func main() {
 
 	sessionStore := sessions.NewFilesystemStore(os.TempDir(), []byte(os.Getenv("SESSION_KEY")))
-	sessionStore.Options.MaxAge = 60
+	sessionStore.Options.MaxAge = 5 * 60
 	sessionStore.Options.HttpOnly = true
+	sessionStore.Options.Secure = true
 
 	server := server.Server{
 		Sessions: sessionStore,
