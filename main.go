@@ -47,6 +47,7 @@ func main() {
 	http.HandleFunc("/droplets", server.DropletHandler)
 	http.HandleFunc("/login", server.LoginHandler)
 	http.HandleFunc("/redirect", server.RedirectHandler)
+	http.HandleFunc("/", server.RootHandler)
 
 	port := readPort()
 	log.Println("Listening on port", port)

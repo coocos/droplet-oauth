@@ -84,7 +84,7 @@ func (s *Server) DropletHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	client := godo.NewFromToken(session.Values["token"].(string))
-	droplets, _, err := client.Droplets.List(context.Background(), nil)
+	droplets, _, err := client.Droplets.List(r.Context(), nil)
 	if err != nil {
 		http.Error(w, "Failed to list droplets", http.StatusInternalServerError)
 		return
@@ -97,4 +97,8 @@ func (s *Server) DropletHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Something went wrong", http.StatusInternalServerError)
 		return
 	}
+}
+
+func (s *Server) RootHandler(w http.ResponseWriter, r *http.Request) {
+	http.Redirect(w, r, "/droplets", http.StatusTemporaryRedirect)
 }
