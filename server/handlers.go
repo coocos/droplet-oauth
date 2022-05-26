@@ -31,10 +31,6 @@ func (s *Server) LoginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if session.IsNew {
-		session.Options = &sessions.Options{
-			HttpOnly: true,
-			MaxAge:   0,
-		}
 		session.Values["state"] = string(uuid.New().String())
 		err := session.Save(r, w)
 		if err != nil {

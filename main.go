@@ -25,8 +25,12 @@ func readPort() int {
 
 func main() {
 
+	sessionStore := sessions.NewFilesystemStore(os.TempDir(), []byte(os.Getenv("SESSION_KEY")))
+	sessionStore.Options.MaxAge = 60
+	sessionStore.Options.HttpOnly = true
+
 	server := server.Server{
-		Sessions: sessions.NewFilesystemStore("./", []byte(os.Getenv("SESSION_KEY"))),
+		Sessions: sessionStore,
 		OAuth: oauth2.Config{
 			ClientID:     os.Getenv("CLIENT_ID"),
 			ClientSecret: os.Getenv("CLIENT_SECRET"),
